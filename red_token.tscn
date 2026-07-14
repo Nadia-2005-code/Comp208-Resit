@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://fsbjm6eivjrk"]
+
+[ext_resource type="Texture2D" uid="uid://bwhg4cf3110bo" path="res://Assets/RedToken.png" id="1_s6s2w"]
+
+[node name="RedToken" type="Sprite2D" unique_id=1667215179]
+texture = ExtResource("1_s6s2w")
