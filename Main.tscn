@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://wjieih0h7j3h" path="res://main.gd" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://fsbjm6eivjrk" path="res://red_token.tscn" id="2_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://d1en7c04u6bph" path="res://yellow_token.tscn" id="3_fos0i"]
+[ext_resource type="PackedScene" uid="uid://j80kc3nk8n8t" path="res://game_over_menu.tscn" id="5_fos0i"]
 
 [node name="Main" type="Node" unique_id=987363382]
 script = ExtResource("1_uu6xs")
@@ -11,3 +12,5 @@ red_token_scene = ExtResource("2_cm0pq")
 yellow_token_scene = ExtResource("3_fos0i")
 
 [node name="Board" parent="." unique_id=1735001761 instance=ExtResource("1_glv2v")]
+
+[node name="GameOverMenu" parent="." unique_id=2142715887 instance=ExtResource("5_fos0i")]

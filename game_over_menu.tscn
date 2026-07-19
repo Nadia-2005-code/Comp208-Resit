@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://j80kc3nk8n8t"]
+
+[ext_resource type="Script" uid="uid://x0cn684wgrpn" path="res://game_over_menu.gd" id="1_prwox"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg6a4"]
+bg_color = Color(0, 0.23921569, 0.30588236, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.93126506, 0.7893673, 0.26905912, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14ib6"]
+bg_color = Color(0.101679005, 0.7409138, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prwox"]
+bg_color = Color(0.058605388, 0.52208173, 4.042983e-06, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp3el"]
+bg_color = Color(0.3929354, 0.9999998, 0.33598182, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="GameOverMenu" type="CanvasLayer" unique_id=2142715887]
+script = ExtResource("1_prwox")
+
+[node name="GameOverPanel" type="Panel" parent="." unique_id=1959417477]
+custom_minimum_size = Vector2(400, 250)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -115.0
+offset_right = 50.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tg6a4")
+
+[node name="ResultLabel" type="Label" parent="." unique_id=883030461]
+custom_minimum_size = Vector2(267, 58)
+offset_left = 257.5
+offset_top = 275.0
+offset_right = 524.5
+offset_bottom = 333.0
+theme_override_font_sizes/font_size = 40
+text = "P1 wins"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="." unique_id=1464513005]
+custom_minimum_size = Vector2(250, 63)
+offset_left = 257.5
+offset_top = 375.0
+offset_right = 524.5
+offset_bottom = 438.0
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_14ib6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_prwox")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wp3el")
+text = "Play again?"
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

@@ -2,6 +2,8 @@ extends Node
 
 @export var red_token_scene: PackedScene
 @export var yellow_token_scene: PackedScene
+@onready var boardNode = $Board
+@onready var GameOver = $GameOverMenu
 
 var playableSize: float
 var boardSize: int
@@ -10,8 +12,8 @@ var columnWidth: float
 var rowHeight: float
 var player: int
 var winner: int
-var boardData: Array
-var columnFill: Array
+var boardData: Array[Array]
+var columnFill: Array[int]
 var movesCount: int
 var marginSize: int = 50
 var boardStart_x: float
@@ -19,12 +21,12 @@ var boardStart_y: float
 var adjusted_x: float
 
 func _ready() -> void:
-	boardSize = $Board.texture.get_width()
-	boardHeight = $Board.texture.get_height()
+	boardSize = boardNode.texture.get_width()
+	boardHeight = boardNode.texture.get_height()
 	playableSize = boardSize - (marginSize*2)
 	columnWidth = playableSize / 7
-	boardStart_x = $Board.global_position.x
-	boardStart_y = $Board.global_position.y
+	boardStart_x = boardNode.global_position.x
+	boardStart_y = boardNode.global_position.y
 	var playableHeight = boardHeight - (marginSize*2)
 	rowHeight = playableHeight / 6.0
 	new_game()
@@ -51,6 +53,7 @@ func new_game():
 		]
 	columnFill = [0,0,0,0,0,0,0]
 	movesCount = 0
+	GameOver.hide()
 	
 func drop_piece(col):
 	var row = 5 - columnFill[col]
@@ -59,15 +62,19 @@ func drop_piece(col):
 	movesCount += 1
 	create_marker(col, row)
 	winner = check_winner()
-	if winner == 1:
-		print("RED WINS!")
-	elif winner == -1:
-		print("YELLOW WINS!")
+	if winner != 0:
+		get_tree().paused = true
+		GameOver.show()
+		if winner == 1:
+			GameOver.get_node("ResultLabel").text = "Red wins!!"
+		elif winner == -1:
+			GameOver.get_node("ResultLabel").text = "Yellow wins!!"
 	elif movesCount == 42:
-		print("It's a draw!")
+		GameOver.get_node("ResultLabel").text = "It's a draw!!"
 	else:
 		player *= -1 # Only swap turns if nobody won yet
 	print(boardData)
+	
 
 func create_marker(col, row):
 	var token
