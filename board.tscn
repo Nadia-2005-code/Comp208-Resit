@@ -3,4 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://0xeddsunwwvk" path="res://Assets/Board.png" id="1_p0ybc"]
 
 [node name="Board" type="Sprite2D" unique_id=1735001761]
+z_index = 1
 texture = ExtResource("1_p0ybc")
+centered = false
