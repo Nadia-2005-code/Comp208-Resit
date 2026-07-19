@@ -3,33 +3,31 @@ extends Node
 var playableSize: float
 var boardSize: int
 var columnWidth: float
-var gridPos: Vector2i
 var player: int
 var winner: int
 var boardData: Array
 var columnFill: Array
 var movesCount: int
 var marginSize: int = 50
-var boardStart_x:int
-var adjusted_x: int
+var boardStart_x: float
+var adjusted_x: float
+var row: int
 
 func _ready() -> void:
 	boardSize = $Board.texture.get_width()
 	playableSize = boardSize - (marginSize*2)
 	columnWidth = playableSize / 7
-	var boardStart_x = $Board.global_position.x
+	boardStart_x = $Board.global_position.x
 	new_game()
 
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			gridPos = Vector2i(event.position/columnWidth)
 			adjusted_x = event.position.x - boardStart_x - marginSize
 			var col = floor(adjusted_x / columnWidth)
 			col = clamp(col, 0, 6)
-			if col >= 0 and col < 7 and columnFill[col] < 6:
-				columnFill[col] += 1
-				print(columnFill)
+			if columnFill[col] < 6:
+				drop_piece(col)
 		
 func new_game():
 	player = 1
@@ -44,3 +42,12 @@ func new_game():
 		]
 	columnFill = [0,0,0,0,0,0,0]
 	movesCount = 0
+	
+func drop_piece(col):
+	row = 5 - columnFill[col]
+	boardData[row][col] = player
+	columnFill[col] += 1
+	movesCount += 1
+	player *= -1
+	print(boardData)
+	
