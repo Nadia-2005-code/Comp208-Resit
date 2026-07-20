@@ -19,6 +19,7 @@ var marginSize: int = 50
 var boardStart_x: float
 var boardStart_y: float
 var adjusted_x: float
+var isDropping: bool = false
 
 func _ready() -> void:
 	boardSize = boardNode.texture.get_width()
@@ -38,7 +39,7 @@ func _input(event):
 			adjusted_x = event.position.x - boardStart_x - marginSize
 			var col = floor(adjusted_x / columnWidth)
 			col = clamp(col, 0, 6)
-			if winner == 0 and columnFill[col] < 6:
+			if winner == 0 and columnFill[col] < 6 and not isDropping:
 				drop_piece(col)
 		
 func new_game():
@@ -55,16 +56,23 @@ func new_game():
 	columnFill = [0,0,0,0,0,0,0]
 	movesCount = 0
 	GameOver.hide()
-	
+
+
 func drop_piece(col):
+	isDropping = true
 	var row = 5 - columnFill[col]
 	boardData[row][col] = player
 	columnFill[col] += 1
 	movesCount += 1
-	create_marker(col, row)
-	winner = check_winner()
+	var tween = create_marker(col, row)
+	await tween.finished
+	var winData = check_winner()
+	winner = winData[0]       
+	var winCoords = winData[1]
 	if winner != 0:
+		winAnimation(winCoords)
 		get_tree().paused = true
+		await get_tree().create_timer(0.6).timeout
 		GameOver.show()
 		if winner == 1:
 			GameOver.get_node("ResultLabel").text = "Red wins!!"
@@ -76,6 +84,7 @@ func drop_piece(col):
 		GameOver.get_node("ResultLabel").text = "It's a draw!!"
 	else:
 		player *= -1 # Only swap turns if nobody won yet
+		isDropping = false 
 
 
 func create_marker(col, row):
@@ -96,33 +105,61 @@ func create_marker(col, row):
 	tween.tween_property(token, "global_position", Vector2(pos_x, pos_y), 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	tween.tween_property(token, "global_position", Vector2(pos_x, pos_y - bounceHeight), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(token, "global_position", Vector2(pos_x, pos_y), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	return tween
 
-func check_winner() -> int:
-# Check horizontal (-)
+func check_winner() -> Array:
+	# Check horizontal (-)
 	for r in range(6):
 		for c in range(4):
 			var total = boardData[r][c] + boardData[r][c+1] + boardData[r][c+2] + boardData[r][c+3]
-			if abs(total) == 4: return boardData[r][c]
+			if abs(total) == 4: 
+				return [boardData[r][c], [Vector2(r,c), Vector2(r,c+1), Vector2(r,c+2), Vector2(r,c+3)]]
 
 	# Check vertical (|)
 	for c in range(7):
 		for r in range(3):
 			var total = boardData[r][c] + boardData[r+1][c] + boardData[r+2][c] + boardData[r+3][c]
-			if abs(total) == 4: return boardData[r][c]
+			if abs(total) == 4: 
+				return [boardData[r][c], [Vector2(r,c), Vector2(r+1,c), Vector2(r+2,c), Vector2(r+3,c)]]
 
 	# Check diagonal down-right (\)
 	for r in range(3):
 		for c in range(4):
 			var total = boardData[r][c] + boardData[r+1][c+1] + boardData[r+2][c+2] + boardData[r+3][c+3]
-			if abs(total) == 4: return boardData[r][c]
+			if abs(total) == 4: 
+				return [boardData[r][c], [Vector2(r,c), Vector2(r+1,c+1), Vector2(r+2,c+2), Vector2(r+3,c+3)]]
 
 	# Check diagonal up-right (/)
 	for r in range(3, 6):
 		for c in range(4):
 			var total = boardData[r][c] + boardData[r-1][c+1] + boardData[r-2][c+2] + boardData[r-3][c+3]
-			if abs(total) == 4: return boardData[r][c]
+			if abs(total) == 4: 
+				return [boardData[r][c], [Vector2(r,c), Vector2(r-1,c+1), Vector2(r-2,c+2), Vector2(r-3,c+3)]]
 
-	return 0 # No winner yet
+	# No winner yet: return 0 and an empty array
+	return [0, []]
 func _on_game_over_menu_restart():
 	get_tree().paused = false 
 	get_tree().reload_current_scene()
+	
+func winAnimation(winCoords):
+	for coord in winCoords:
+		var r = coord.x
+		var c = coord.y
+		var pos_x = boardStart_x + marginSize + (c * columnWidth) + (columnWidth / 2.0)
+		var verticalGap = columnWidth + 10
+		var topHole_y = boardStart_y + 100
+		var pos_y = topHole_y + (r * verticalGap)
+		var pulseToken
+		if winner == 1:
+			pulseToken = red_token_scene.instantiate()
+		else:
+			pulseToken = yellow_token_scene.instantiate()
+		add_child(pulseToken)
+		pulseToken.global_position = Vector2(pos_x, pos_y)
+		pulseToken.z_index = 5
+		pulseToken.process_mode = Node.PROCESS_MODE_ALWAYS
+		var pulse = pulseToken.create_tween().set_loops()
+		pulse.tween_property(pulseToken, "scale", Vector2(1.3, 1.3), 0.2).set_trans(Tween.TRANS_SINE)
+		pulse.tween_property(pulseToken, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
+		
