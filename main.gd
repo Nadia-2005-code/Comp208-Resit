@@ -76,8 +76,7 @@ func drop_piece(col):
 		GameOver.get_node("ResultLabel").text = "It's a draw!!"
 	else:
 		player *= -1 # Only swap turns if nobody won yet
-	print(boardData)
-	
+
 
 func create_marker(col, row):
 	var token
@@ -93,7 +92,10 @@ func create_marker(col, row):
 	var spawn_y = topHole_y - 100
 	token.global_position = Vector2(pos_x, spawn_y)
 	var tween = get_tree().create_tween()
-	tween.tween_property(token, "global_position", Vector2(pos_x, pos_y), 0.5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	var bounceHeight = randi_range(12, 18)
+	tween.tween_property(token, "global_position", Vector2(pos_x, pos_y), 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(token, "global_position", Vector2(pos_x, pos_y - bounceHeight), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(token, "global_position", Vector2(pos_x, pos_y), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 
 func check_winner() -> int:
 # Check horizontal (-)
