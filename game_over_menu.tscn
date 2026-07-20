@@ -39,6 +39,7 @@ corner_radius_bottom_left = 10
 script = ExtResource("1_prwox")
 
 [node name="GameOverPanel" type="Panel" parent="." unique_id=1959417477]
+process_mode = 3
 custom_minimum_size = Vector2(400, 250)
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,6 +55,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tg6a4")
 
 [node name="ResultLabel" type="Label" parent="." unique_id=883030461]
+process_mode = 3
 custom_minimum_size = Vector2(267, 58)
 offset_left = 257.5
 offset_top = 275.0
@@ -65,6 +67,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Restart" type="Button" parent="." unique_id=1464513005]
+process_mode = 3
 custom_minimum_size = Vector2(250, 63)
 offset_left = 257.5
 offset_top = 375.0

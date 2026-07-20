@@ -30,6 +30,7 @@ func _ready() -> void:
 	var playableHeight = boardHeight - (marginSize*2)
 	rowHeight = playableHeight / 6.0
 	new_game()
+	GameOver.restart.connect(_on_game_over_menu_restart)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -70,6 +71,8 @@ func drop_piece(col):
 		elif winner == -1:
 			GameOver.get_node("ResultLabel").text = "Yellow wins!!"
 	elif movesCount == 42:
+		get_tree().paused = true
+		GameOver.show()
 		GameOver.get_node("ResultLabel").text = "It's a draw!!"
 	else:
 		player *= -1 # Only swap turns if nobody won yet
@@ -87,7 +90,10 @@ func create_marker(col, row):
 	var verticalGap = columnWidth + 10
 	var topHole_y = boardStart_y + 100
 	var pos_y = topHole_y + (row * verticalGap)
-	token.global_position = Vector2(pos_x, pos_y)
+	var spawn_y = topHole_y - 100
+	token.global_position = Vector2(pos_x, spawn_y)
+	var tween = get_tree().create_tween()
+	tween.tween_property(token, "global_position", Vector2(pos_x, pos_y), 0.5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 func check_winner() -> int:
 # Check horizontal (-)
@@ -115,3 +121,6 @@ func check_winner() -> int:
 			if abs(total) == 4: return boardData[r][c]
 
 	return 0 # No winner yet
+func _on_game_over_menu_restart():
+	get_tree().paused = false 
+	get_tree().reload_current_scene()
