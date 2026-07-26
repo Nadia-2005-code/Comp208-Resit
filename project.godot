@@ -24,6 +24,10 @@ GameState="*uid://do205og33ye6r"
 window/size/viewport_width=1100
 window/size/viewport_height=700
 
+[gui]
+
+theme/custom_font="uid://dirhc4uh57eih"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

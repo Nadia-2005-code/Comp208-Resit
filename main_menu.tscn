@@ -1,9 +1,6 @@
 [gd_scene format=3 uid="uid://b4v3vcijlon7h"]
 
 [ext_resource type="Script" uid="uid://cp7wkx0onkrc5" path="res://main_menu.gd" id="1_06t4h"]
-[ext_resource type="StyleBox" uid="uid://cplp7qgwid8qf" path="res://Assets/buttonNormal.tres" id="2_jix8l"]
-[ext_resource type="StyleBox" uid="uid://bsrno57aqa1hg" path="res://Assets/buttonPressed.tres" id="3_glbon"]
-[ext_resource type="StyleBox" uid="uid://qweulhjk43p8" path="res://Assets/buttonHover.tres" id="4_nlkkf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
 bg_color = Color(0, 0.239, 0.306, 1)
@@ -16,6 +13,18 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
+bg_color = Color(0.101679005, 0.7409138, 0, 1)
+border_color = Color(0.931, 0.789, 0.269, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+bg_color = Color(0.058605388, 0.52208173, 4.042983e-06, 1)
+border_color = Color(0.931, 0.789, 0.269, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jix8l"]
+bg_color = Color(0.3929354, 0.9999998, 0.33598182, 1)
+border_color = Color(0.931, 0.789, 0.269, 1)
 
 [node name="MainMenu" type="Control" unique_id=1594612688]
 layout_mode = 3
@@ -72,7 +81,7 @@ alignment = 1
 
 [node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=2016337216]
 layout_mode = 2
-theme_override_styles/normal = ExtResource("2_jix8l")
-theme_override_styles/pressed = ExtResource("3_glbon")
-theme_override_styles/hover = ExtResource("4_nlkkf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jix8l")
 text = "Play"

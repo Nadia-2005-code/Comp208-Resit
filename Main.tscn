@@ -9,6 +9,14 @@
 [ext_resource type="StyleBox" uid="uid://bsrno57aqa1hg" path="res://Assets/buttonPressed.tres" id="7_03owx"]
 [ext_resource type="StyleBox" uid="uid://qweulhjk43p8" path="res://Assets/buttonHover.tres" id="8_wkp8b"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trn2v"]
+bg_color = Color(0, 0.23921569, 0.30588236, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.931, 0.789, 0.269, 1)
+
 [node name="Main" type="Node" unique_id=987363382]
 script = ExtResource("1_uu6xs")
 red_token_scene = ExtResource("2_cm0pq")
@@ -19,6 +27,15 @@ yellow_token_scene = ExtResource("3_fos0i")
 [node name="GameOverMenu" parent="." unique_id=2142715887 instance=ExtResource("5_fos0i")]
 
 [node name="SidePanel" type="CanvasLayer" parent="." unique_id=368394380]
+
+[node name="SidePanelBG" type="Panel" parent="SidePanel" unique_id=1689638716]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_bottom = 700.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_trn2v")
 
 [node name="ScorePanel" type="VBoxContainer" parent="SidePanel" unique_id=1793586387]
 anchors_preset = 1
@@ -40,25 +57,16 @@ text = "Main Menu
 
 [node name="ScoreTitle" type="Label" parent="SidePanel/ScorePanel" unique_id=73437007]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Colour Scores"
+horizontal_alignment = 1
 
 [node name="RedScore" type="Label" parent="SidePanel/ScorePanel" unique_id=1079771377]
 layout_mode = 2
 text = "Red:0"
+horizontal_alignment = 1
 
 [node name="YellowScore" type="Label" parent="SidePanel/ScorePanel" unique_id=870017676]
 layout_mode = 2
 text = "Yellow:0"
-
-[node name="TurnLabel" type="Label" parent="SidePanel" unique_id=824966606]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -298.0
-offset_top = -179.0
-grow_horizontal = 0
-grow_vertical = 0
-pivot_offset = Vector2(-220, -20)
-text = "Red's Turn"
+horizontal_alignment = 1
