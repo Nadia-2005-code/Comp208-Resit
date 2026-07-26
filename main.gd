@@ -7,7 +7,6 @@ extends Node
 @onready var mainMenuButton = $SidePanel/ScorePanel/MainMenuButton
 @onready var redScore = $SidePanel/ScorePanel/RedScore
 @onready var yellowScore = $SidePanel/ScorePanel/YellowScore
-@onready var turnLabel = $SidePanel/TurnLabel
 
 var playableSize: float
 var boardSize: int
@@ -51,7 +50,6 @@ func _input(event):
 		
 func new_game():
 	player = 1
-	update_turn_label()
 	winner = 0
 	boardData = [
 		[0,0,0,0,0,0,0],
@@ -96,7 +94,6 @@ func drop_piece(col):
 	else:
 		player *= -1 # Only swap turns if nobody won yet
 		isDropping = false 
-		update_turn_label()
 
 
 func create_marker(col, row):
@@ -182,9 +179,3 @@ func winAnimation(winCoords):
 func update_score_number():
 	redScore.text = "Red: " + str(GameState.player1Wins)
 	yellowScore.text = "Yellow: " + str(GameState.player2Wins)
-
-func update_turn_label():
-	if player == 1:
-		turnLabel.text = GameState.player1Name + "'s Turn"
-	else:
-		turnLabel.text = GameState.player2Name + "'s Turn"

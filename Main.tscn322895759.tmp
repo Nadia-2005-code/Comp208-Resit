@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://drv6v7e5wx4ni"]
+
+[ext_resource type="PackedScene" uid="uid://pnbktbynklnf" path="res://board.tscn" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://wjieih0h7j3h" path="res://main.gd" id="1_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://fsbjm6eivjrk" path="res://red_token.tscn" id="2_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://d1en7c04u6bph" path="res://yellow_token.tscn" id="3_fos0i"]
+[ext_resource type="PackedScene" uid="uid://j80kc3nk8n8t" path="res://game_over_menu.tscn" id="5_fos0i"]
+[ext_resource type="StyleBox" uid="uid://cplp7qgwid8qf" path="res://Assets/buttonNormal.tres" id="6_trn2v"]
+[ext_resource type="StyleBox" uid="uid://bsrno57aqa1hg" path="res://Assets/buttonPressed.tres" id="7_03owx"]
+[ext_resource type="StyleBox" uid="uid://qweulhjk43p8" path="res://Assets/buttonHover.tres" id="8_wkp8b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trn2v"]
+bg_color = Color(0, 0.23921569, 0.30588236, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.931, 0.789, 0.269, 1)
+
+[node name="Main" type="Node" unique_id=987363382]
+script = ExtResource("1_uu6xs")
+red_token_scene = ExtResource("2_cm0pq")
+yellow_token_scene = ExtResource("3_fos0i")
+
+[node name="Board" parent="." unique_id=1735001761 instance=ExtResource("1_glv2v")]
+
+[node name="GameOverMenu" parent="." unique_id=2142715887 instance=ExtResource("5_fos0i")]
+
+[node name="SidePanel" type="CanvasLayer" parent="." unique_id=368394380]
+
+[node name="SidePanelBG" type="Panel" parent="SidePanel" unique_id=1689638716]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_bottom = 700.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_trn2v")
+
+[node name="ScorePanel" type="VBoxContainer" parent="SidePanel" unique_id=1793586387]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_bottom = 224.0
+grow_horizontal = 0
+pivot_offset = Vector2(-220, 20)
+theme_override_constants/separation = 19
+
+[node name="MainMenuButton" type="Button" parent="SidePanel/ScorePanel" unique_id=632633279]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("6_trn2v")
+theme_override_styles/pressed = ExtResource("7_03owx")
+theme_override_styles/hover = ExtResource("8_wkp8b")
+text = "Main Menu
+"
+
+[node name="ScoreTitle" type="Label" parent="SidePanel/ScorePanel" unique_id=73437007]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Colour Scores"
+horizontal_alignment = 1
+
+[node name="RedScore" type="Label" parent="SidePanel/ScorePanel" unique_id=1079771377]
+layout_mode = 2
+text = "Red:0"
+horizontal_alignment = 1
+
+[node name="YellowScore" type="Label" parent="SidePanel/ScorePanel" unique_id=870017676]
+layout_mode = 2
+text = "Yellow:0"
+horizontal_alignment = 1
