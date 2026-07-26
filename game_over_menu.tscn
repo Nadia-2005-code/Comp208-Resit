@@ -14,6 +14,27 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4j5i6"]
+bg_color = Color(0.101679005, 0.7409138, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isdfh"]
+bg_color = Color(0.058605388, 0.52208173, 4.042983e-06, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17l84"]
+bg_color = Color(0.3929354, 0.9999998, 0.33598182, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14ib6"]
 bg_color = Color(0.101679005, 0.7409138, 0, 1)
 corner_radius_top_left = 10
@@ -58,9 +79,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tg6a4")
 process_mode = 3
 custom_minimum_size = Vector2(267, 58)
 offset_left = 257.5
-offset_top = 223.0
+offset_top = 246.0
 offset_right = 524.5
-offset_bottom = 281.0
+offset_bottom = 304.0
 theme_override_font_sizes/font_size = 40
 text = "P1 wins"
 horizontal_alignment = 1
@@ -74,9 +95,9 @@ offset_top = 332.0
 offset_right = 524.5
 offset_bottom = 395.0
 theme_override_font_sizes/font_size = 28
-theme_override_styles/normal = SubResource("StyleBoxFlat_14ib6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prwox")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wp3el")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4j5i6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_isdfh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_17l84")
 text = "Play again?"
 
 [node name="MainMenu" type="Button" parent="." unique_id=587937371]

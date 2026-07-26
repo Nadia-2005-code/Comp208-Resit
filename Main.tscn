@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://fsbjm6eivjrk" path="res://red_token.tscn" id="2_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://d1en7c04u6bph" path="res://yellow_token.tscn" id="3_fos0i"]
 [ext_resource type="PackedScene" uid="uid://j80kc3nk8n8t" path="res://game_over_menu.tscn" id="5_fos0i"]
+[ext_resource type="StyleBox" uid="uid://cplp7qgwid8qf" path="res://Assets/buttonNormal.tres" id="6_trn2v"]
+[ext_resource type="StyleBox" uid="uid://bsrno57aqa1hg" path="res://Assets/buttonPressed.tres" id="7_03owx"]
+[ext_resource type="StyleBox" uid="uid://qweulhjk43p8" path="res://Assets/buttonHover.tres" id="8_wkp8b"]
 
 [node name="Main" type="Node" unique_id=987363382]
 script = ExtResource("1_uu6xs")
@@ -21,13 +24,17 @@ yellow_token_scene = ExtResource("3_fos0i")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -292.0
+offset_left = -300.0
 offset_bottom = 224.0
 grow_horizontal = 0
 pivot_offset = Vector2(-220, 20)
+theme_override_constants/separation = 19
 
 [node name="MainMenuButton" type="Button" parent="SidePanel/ScorePanel" unique_id=632633279]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("6_trn2v")
+theme_override_styles/pressed = ExtResource("7_03owx")
+theme_override_styles/hover = ExtResource("8_wkp8b")
 text = "Main Menu
 "
 
