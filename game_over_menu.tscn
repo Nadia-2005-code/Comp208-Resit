@@ -46,10 +46,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -115.0
-offset_right = 50.0
-offset_bottom = 135.0
+offset_left = -400.0
+offset_top = -149.0
+offset_right = 88.0
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tg6a4")
@@ -58,9 +58,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tg6a4")
 process_mode = 3
 custom_minimum_size = Vector2(267, 58)
 offset_left = 257.5
-offset_top = 275.0
+offset_top = 223.0
 offset_right = 524.5
-offset_bottom = 333.0
+offset_bottom = 281.0
 theme_override_font_sizes/font_size = 40
 text = "P1 wins"
 horizontal_alignment = 1
@@ -70,13 +70,28 @@ vertical_alignment = 1
 process_mode = 3
 custom_minimum_size = Vector2(250, 63)
 offset_left = 257.5
-offset_top = 375.0
+offset_top = 332.0
 offset_right = 524.5
-offset_bottom = 438.0
+offset_bottom = 395.0
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_14ib6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_prwox")
 theme_override_styles/hover = SubResource("StyleBoxFlat_wp3el")
 text = "Play again?"
 
+[node name="MainMenu" type="Button" parent="." unique_id=587937371]
+process_mode = 3
+custom_minimum_size = Vector2(250, 63)
+offset_left = 298.0
+offset_top = 413.0
+offset_right = 565.0
+offset_bottom = 476.0
+scale = Vector2(0.7, 0.7)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_14ib6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_prwox")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wp3el")
+text = "Main Menu?"
+
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_restart_pressed"]

@@ -75,9 +75,9 @@ func drop_piece(col):
 		await get_tree().create_timer(0.6).timeout
 		GameOver.show()
 		if winner == 1:
-			GameOver.get_node("ResultLabel").text = "Red wins!!"
+			GameOver.get_node("ResultLabel").text = GameState.player1Name + " wins!!"
 		elif winner == -1:
-			GameOver.get_node("ResultLabel").text = "Yellow wins!!"
+			GameOver.get_node("ResultLabel").text = GameState.player2Name + " wins!!"
 	elif movesCount == 42:
 		get_tree().paused = true
 		GameOver.show()
@@ -141,7 +141,11 @@ func check_winner() -> Array:
 func _on_game_over_menu_restart():
 	get_tree().paused = false 
 	get_tree().reload_current_scene()
-	
+
+func _game_over_menu_MainMenu():
+	get_tree().paused = false 
+	get_tree().change_scene_to_file("res://main_menu.tscn")
+
 func winAnimation(winCoords):
 	for coord in winCoords:
 		var r = coord.x
@@ -162,4 +166,3 @@ func winAnimation(winCoords):
 		var pulse = pulseToken.create_tween().set_loops()
 		pulse.tween_property(pulseToken, "scale", Vector2(1.3, 1.3), 0.2).set_trans(Tween.TRANS_SINE)
 		pulse.tween_property(pulseToken, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
-		
