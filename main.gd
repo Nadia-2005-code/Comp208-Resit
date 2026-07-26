@@ -4,6 +4,10 @@ extends Node
 @export var yellow_token_scene: PackedScene
 @onready var boardNode = $Board
 @onready var GameOver = $GameOverMenu
+@onready var mainMenuButton = $SidePanel/ScorePanel/MainMenuButton
+@onready var redScore = $SidePanel/ScorePanel/RedScore
+@onready var yellowScore = $SidePanel/ScorePanel/YellowScore
+@onready var turnLabel = $SidePanel/TurnLabel
 
 var playableSize: float
 var boardSize: int
@@ -33,6 +37,8 @@ func _ready() -> void:
 	new_game()
 	GameOver.restart.connect(_on_game_over_menu_restart)
 	GameOver.MainMenu.connect(_on_main_menu_pressed)
+	mainMenuButton.pressed.connect(_on_main_menu_pressed)
+	update_score_number()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -45,6 +51,7 @@ func _input(event):
 		
 func new_game():
 	player = 1
+	update_turn_label()
 	winner = 0
 	boardData = [
 		[0,0,0,0,0,0,0],
@@ -76,9 +83,12 @@ func drop_piece(col):
 		await get_tree().create_timer(0.6).timeout
 		GameOver.show()
 		if winner == 1:
+			GameState.player1Wins += 1
 			GameOver.get_node("ResultLabel").text = GameState.player1Name + " wins!!"
 		elif winner == -1:
+			GameState.player2Wins += 1
 			GameOver.get_node("ResultLabel").text = GameState.player2Name + " wins!!"
+		update_score_number()
 	elif movesCount == 42:
 		get_tree().paused = true
 		GameOver.show()
@@ -86,6 +96,7 @@ func drop_piece(col):
 	else:
 		player *= -1 # Only swap turns if nobody won yet
 		isDropping = false 
+		update_turn_label()
 
 
 func create_marker(col, row):
@@ -145,7 +156,7 @@ func _on_game_over_menu_restart():
 
 func _on_main_menu_pressed():
 	get_tree().paused = false 
-	get_tree().change_scene_to_file("res://MainMenu.tscn")
+	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 func winAnimation(winCoords):
 	for coord in winCoords:
@@ -167,3 +178,13 @@ func winAnimation(winCoords):
 		var pulse = pulseToken.create_tween().set_loops()
 		pulse.tween_property(pulseToken, "scale", Vector2(1.3, 1.3), 0.2).set_trans(Tween.TRANS_SINE)
 		pulse.tween_property(pulseToken, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
+
+func update_score_number():
+	redScore.text = "Red: " + str(GameState.player1Wins)
+	yellowScore.text = "Yellow: " + str(GameState.player2Wins)
+
+func update_turn_label():
+	if player == 1:
+		turnLabel.text = GameState.player1Name + "'s Turn"
+	else:
+		turnLabel.text = GameState.player2Name + "'s Turn"

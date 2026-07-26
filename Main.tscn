@@ -14,3 +14,44 @@ yellow_token_scene = ExtResource("3_fos0i")
 [node name="Board" parent="." unique_id=1735001761 instance=ExtResource("1_glv2v")]
 
 [node name="GameOverMenu" parent="." unique_id=2142715887 instance=ExtResource("5_fos0i")]
+
+[node name="SidePanel" type="CanvasLayer" parent="." unique_id=368394380]
+
+[node name="ScorePanel" type="VBoxContainer" parent="SidePanel" unique_id=1793586387]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -292.0
+offset_bottom = 224.0
+grow_horizontal = 0
+pivot_offset = Vector2(-220, 20)
+
+[node name="MainMenuButton" type="Button" parent="SidePanel/ScorePanel" unique_id=632633279]
+layout_mode = 2
+text = "Main Menu
+"
+
+[node name="ScoreTitle" type="Label" parent="SidePanel/ScorePanel" unique_id=73437007]
+layout_mode = 2
+text = "Colour Scores"
+
+[node name="RedScore" type="Label" parent="SidePanel/ScorePanel" unique_id=1079771377]
+layout_mode = 2
+text = "Red:0"
+
+[node name="YellowScore" type="Label" parent="SidePanel/ScorePanel" unique_id=870017676]
+layout_mode = 2
+text = "Yellow:0"
+
+[node name="TurnLabel" type="Label" parent="SidePanel" unique_id=824966606]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -298.0
+offset_top = -179.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(-220, -20)
+text = "Red's Turn"
