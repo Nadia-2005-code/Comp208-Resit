@@ -32,6 +32,7 @@ func _ready() -> void:
 	rowHeight = playableHeight / 6.0
 	new_game()
 	GameOver.restart.connect(_on_game_over_menu_restart)
+	GameOver.MainMenu.connect(_on_main_menu_pressed)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -142,9 +143,9 @@ func _on_game_over_menu_restart():
 	get_tree().paused = false 
 	get_tree().reload_current_scene()
 
-func _game_over_menu_MainMenu():
+func _on_main_menu_pressed():
 	get_tree().paused = false 
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://MainMenu.tscn")
 
 func winAnimation(winCoords):
 	for coord in winCoords:

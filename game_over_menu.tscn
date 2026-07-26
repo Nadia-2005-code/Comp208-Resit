@@ -94,4 +94,5 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wp3el")
 text = "Main Menu?"
 
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="MainMenu" to="." method="_on_restart_pressed"]

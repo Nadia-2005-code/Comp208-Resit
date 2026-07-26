@@ -5,6 +5,8 @@ signal MainMenu
 
 func _on_restart_pressed() -> void:
 	restart.emit()
-	
-func _on_MainMenu_pressed() -> void:
+
+
+
+func _on_main_menu_pressed() -> void:
 	MainMenu.emit()
