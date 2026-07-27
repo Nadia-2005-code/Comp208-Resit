@@ -138,10 +138,46 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 16
 
-[node name="WinnersList" type="LineEdit" parent="SidePanel/TournamentInfo" unique_id=1962764734]
-custom_minimum_size = Vector2(150, 35)
+[node name="Match1" type="LineEdit" parent="SidePanel/TournamentInfo" unique_id=1380102950]
+custom_minimum_size = Vector2(200, 35)
 layout_mode = 2
 placeholder_text = "Q1 - Red"
+alignment = 1
+
+[node name="Match2" type="LineEdit" parent="SidePanel/TournamentInfo" unique_id=255805073]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q1 - Yellow"
+alignment = 1
+
+[node name="Match3" type="LineEdit" parent="SidePanel/TournamentInfo" unique_id=66389451]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q2 - Red"
+alignment = 1
+
+[node name="Match4" type="LineEdit" parent="SidePanel/TournamentInfo" unique_id=692135130]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q2 - Yellow"
+alignment = 1
+
+[node name="Match5" type="LineEdit" parent="SidePanel/TournamentInfo" unique_id=73241908]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q3 - Red"
+alignment = 1
+
+[node name="Match6" type="LineEdit" parent="SidePanel/TournamentInfo" unique_id=1687999057]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q3 - Yellow"
+alignment = 1
+
+[node name="Match7" type="LineEdit" parent="SidePanel/TournamentInfo" unique_id=804628682]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q4 - Red"
 alignment = 1
 
 [connection signal="pressed" from="SidePanel/ScorePanel/ChangeNameButton" to="." method="_on_change_name_button_pressed"]

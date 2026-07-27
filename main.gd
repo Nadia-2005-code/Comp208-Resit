@@ -42,6 +42,7 @@ func _ready() -> void:
 		$SidePanel/ScorePanel/ScoreTitle.hide() 
 		$SidePanel/ScorePanel/RedScore.hide() 
 		$SidePanel/ScorePanel/YellowScore.hide()
+		update_tournament_tally()
 	else:
 		$SidePanel/TournamentInfo.hide()
 
@@ -212,3 +213,13 @@ func handle_tournament_win(winnerName: String) -> void:
 		update_tournament_tally()
 
 func update_tournament_tally() -> void:
+	if TournamentState.inProgress:
+		for i in range(TournamentState.winners.size()):
+			var matchWinner = TournamentState.winners[i]
+			var labelName = "Match" + str(i + 1)
+			var labelNode = $SidePanel/TournamentInfo.get_node_or_null(labelName)
+			if labelNode != null:
+				if matchWinner == null or matchWinner == "":
+					labelNode.text = "Match " + str(i + 1) + ": TBD"
+				else:
+					labelNode.text = "Match " + str(i + 1) + ": " + str(matchWinner) + " won!!"
