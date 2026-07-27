@@ -162,7 +162,7 @@ func _on_game_over_menu_restart():
 
 func _on_main_menu_pressed():
 	get_tree().paused = false 
-	TournamentState.in_progress = false
+	TournamentState.inProgress = false
 	get_tree().change_scene_to_file("res://mode_select.tscn")
 
 func winAnimation(winCoords):
@@ -201,5 +201,5 @@ func handle_tournament_win(winnerName: String) -> void:
 		GameOver.get_node("Restart").visible = false
 	else:
 		var round_name = TournamentState.get_round_name(TournamentState.currentMatchIndex)
-		GameOver.get_node("ResultLabel").text = winnerName + " wins the " + round_name + "!"
+		GameOver.get_node("ResultLabel").text = winnerName + " wins!!"
 		GameOver.get_node("Restart").text = "Next Match"

@@ -77,15 +77,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tg6a4")
 
 [node name="ResultLabel" type="Label" parent="." unique_id=883030461]
 process_mode = 3
-custom_minimum_size = Vector2(267, 58)
-offset_left = 257.5
-offset_top = 246.0
-offset_right = 524.5
-offset_bottom = 304.0
-theme_override_font_sizes/font_size = 40
+custom_minimum_size = Vector2(400, 58)
+offset_left = 154.0
+offset_top = 213.0
+offset_right = 639.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 32
 text = "P1 wins"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Restart" type="Button" parent="." unique_id=1464513005]
 process_mode = 3
