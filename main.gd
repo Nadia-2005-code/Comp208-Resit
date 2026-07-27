@@ -38,6 +38,12 @@ func _ready() -> void:
 	GameOver.MainMenu.connect(_on_main_menu_pressed)
 	mainMenuButton.pressed.connect(_on_main_menu_pressed)
 	update_score_number()
+	if TournamentState.inProgress:
+		$SidePanel/ScorePanel/ScoreTitle.hide() 
+		$SidePanel/ScorePanel/RedScore.hide() 
+		$SidePanel/ScorePanel/YellowScore.hide()
+	else:
+		$SidePanel/TournamentInfo.hide()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -203,3 +209,6 @@ func handle_tournament_win(winnerName: String) -> void:
 		var round_name = TournamentState.get_round_name(TournamentState.currentMatchIndex)
 		GameOver.get_node("ResultLabel").text = winnerName + " wins!!"
 		GameOver.get_node("Restart").text = "Next Match"
+		update_tournament_tally()
+
+func update_tournament_tally() -> void:

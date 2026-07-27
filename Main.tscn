@@ -98,26 +98,50 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_03owx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wkp8b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_20pc6")
-text = "Change Player Names
+text = "Start 1 vs. 1 Match
 
 "
 
 [node name="ScoreTitle" type="Label" parent="SidePanel/ScorePanel" unique_id=73437007]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Colour Scores"
 horizontal_alignment = 1
 
 [node name="RedScore" type="Label" parent="SidePanel/ScorePanel" unique_id=1079771377]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Red:0"
 horizontal_alignment = 1
 
 [node name="YellowScore" type="Label" parent="SidePanel/ScorePanel" unique_id=870017676]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Yellow:0"
 horizontal_alignment = 1
+
+[node name="TournamentInfo" type="VBoxContainer" parent="SidePanel" unique_id=350553943]
+custom_minimum_size = Vector2(150, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -276.0
+offset_top = -592.0
+offset_right = -26.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="WinnersList" type="LineEdit" parent="SidePanel/TournamentInfo" unique_id=1962764734]
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+placeholder_text = "Q1 - Red"
+alignment = 1
 
 [connection signal="pressed" from="SidePanel/ScorePanel/ChangeNameButton" to="." method="_on_change_name_button_pressed"]
