@@ -65,20 +65,21 @@ yellow_token_scene = ExtResource("3_fos0i")
 [node name="SidePanel" type="CanvasLayer" parent="." unique_id=368394380]
 
 [node name="SidePanelBG" type="Panel" parent="SidePanel" unique_id=1689638716]
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = -1
+anchor_left = 0.72700006
 anchor_right = 1.0
-offset_left = -300.0
-offset_bottom = 700.0
+anchor_bottom = 1.0
+offset_left = 0.29992676
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_trn2v")
 
 [node name="ScorePanel" type="VBoxContainer" parent="SidePanel" unique_id=1793586387]
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = -1
+anchor_left = 0.72700006
 anchor_right = 1.0
-offset_left = -300.0
-offset_bottom = 258.0
+anchor_bottom = 0.36900002
+offset_left = 0.29992676
+offset_bottom = -0.3000183
 grow_horizontal = 0
 pivot_offset = Vector2(-220, 20)
 theme_override_constants/separation = 12
@@ -125,15 +126,15 @@ horizontal_alignment = 1
 
 [node name="TournamentInfo" type="VBoxContainer" parent="SidePanel" unique_id=350553943]
 custom_minimum_size = Vector2(150, 0)
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -276.0
-offset_top = -592.0
-offset_right = -26.0
-offset_bottom = -3.0
+anchors_preset = -1
+anchor_left = 0.749
+anchor_top = 0.15400001
+anchor_right = 0.9760001
+anchor_bottom = 0.99600005
+offset_left = 0.099975586
+offset_top = 0.19998932
+offset_right = 0.39990234
+offset_bottom = -0.2000122
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 16

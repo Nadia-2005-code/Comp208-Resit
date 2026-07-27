@@ -24,6 +24,7 @@ TournamentState="*uid://u63duthrqscp"
 
 window/size/viewport_width=1100
 window/size/viewport_height=700
+window/stretch/mode="canvas_items"
 
 [gui]
 

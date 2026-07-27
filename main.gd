@@ -45,6 +45,9 @@ func _ready() -> void:
 		update_tournament_tally()
 	else:
 		$SidePanel/TournamentInfo.hide()
+		$SidePanel/ScorePanel/ScoreTitle.show() 
+		$SidePanel/ScorePanel/RedScore.show() 
+		$SidePanel/ScorePanel/YellowScore.show()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -199,7 +202,9 @@ func update_score_number():
 
 
 func _on_change_name_button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://oneVsOne.tscn")
+	
 
 func handle_tournament_win(winnerName: String) -> void:
 	TournamentState.record_winner(winnerName)
