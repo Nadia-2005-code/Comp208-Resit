@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://dd8tmkubebtp6"]
+
+[ext_resource type="Script" uid="uid://byftbobnkllw" path="res://tournament_setup.gd" id="1_54lv0"]
+[ext_resource type="StyleBox" uid="uid://cplp7qgwid8qf" path="res://Assets/buttonNormal.tres" id="2_bsrqt"]
+[ext_resource type="StyleBox" uid="uid://bsrno57aqa1hg" path="res://Assets/buttonPressed.tres" id="3_6ices"]
+[ext_resource type="StyleBox" uid="uid://qweulhjk43p8" path="res://Assets/buttonHover.tres" id="4_epbuf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb221"]
+bg_color = Color(0, 0.239, 0.306, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.931, 0.789, 0.269, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="TournamentBracket" type="Control" unique_id=1524770114]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_54lv0")
+
+[node name="BackgroundPanel" type="Panel" parent="." unique_id=2009218034]
+custom_minimum_size = Vector2(800, 700)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nb221")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1384836425]
+layout_mode = 0
+offset_right = 1100.0
+offset_bottom = 103.0
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 64
+text = "TOURNAMENT BRACKET"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TutorialLabel" type="Label" parent="." unique_id=832628390]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -250.0
+offset_right = 275.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 24
+text = "Players face off in matches based on rows, followed by winners playing until a grand champion is crowned!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=411808381]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -522.0
+offset_top = -104.0
+offset_right = 1015.0
+offset_bottom = 396.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer" unique_id=2083078882]
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 60
+columns = 2
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/GridContainer" unique_id=899679362]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q1 - Red"
+alignment = 1
+
+[node name="LineEdit2" type="LineEdit" parent="CenterContainer/GridContainer" unique_id=351523800]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q1 - Yellow"
+alignment = 1
+
+[node name="LineEdit3" type="LineEdit" parent="CenterContainer/GridContainer" unique_id=1853744854]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q2 - Red"
+alignment = 1
+
+[node name="LineEdit4" type="LineEdit" parent="CenterContainer/GridContainer" unique_id=447516770]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q2 - Yellow"
+alignment = 1
+
+[node name="LineEdit5" type="LineEdit" parent="CenterContainer/GridContainer" unique_id=496037972]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q3 - Red"
+alignment = 1
+
+[node name="LineEdit6" type="LineEdit" parent="CenterContainer/GridContainer" unique_id=2115124490]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q3 - Yellow"
+alignment = 1
+
+[node name="LineEdit7" type="LineEdit" parent="CenterContainer/GridContainer" unique_id=1675485848]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q4 - Red"
+alignment = 1
+
+[node name="LineEdit8" type="LineEdit" parent="CenterContainer/GridContainer" unique_id=353196722]
+custom_minimum_size = Vector2(200, 35)
+layout_mode = 2
+placeholder_text = "Q4 - Yellow"
+alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=128258147]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 594.0
+offset_right = 825.0
+offset_bottom = 656.38184
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_bsrqt")
+theme_override_styles/pressed = ExtResource("3_6ices")
+theme_override_styles/hover = ExtResource("4_epbuf")
+text = "Start Tournament!!
+"

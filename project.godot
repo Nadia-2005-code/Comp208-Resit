@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Connect4"
-run/main_scene="uid://b4v3vcijlon7h"
+run/main_scene="uid://b5ixwf17x6t8h"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameState="*uid://do205og33ye6r"
+TournamentState="*uid://u63duthrqscp"
 
 [display]
 

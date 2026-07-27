@@ -80,19 +80,23 @@ func drop_piece(col):
 		get_tree().paused = true
 		await get_tree().create_timer(0.6).timeout
 		GameOver.show()
-		if winner == 1:
-			GameState.player1Wins += 1
-			GameOver.get_node("ResultLabel").text = GameState.player1Name + " wins!!"
-		elif winner == -1:
-			GameState.player2Wins += 1
-			GameOver.get_node("ResultLabel").text = GameState.player2Name + " wins!!"
-		update_score_number()
+		var winnerName = GameState.player1Name if winner == 1 else GameState.player2Name
+		if TournamentState.inProgress:
+			handle_tournament_win(winnerName)
+		else:
+			if winner == 1:
+				GameState.player1Wins += 1
+				GameOver.get_node("ResultLabel").text = GameState.player1Name + " wins!!"
+			elif winner == -1:
+				GameState.player2Wins += 1
+				GameOver.get_node("ResultLabel").text = GameState.player2Name + " wins!!"
+			update_score_number()
 	elif movesCount == 42:
 		get_tree().paused = true
 		GameOver.show()
 		GameOver.get_node("ResultLabel").text = "It's a draw!!"
 	else:
-		player *= -1 # Only swap turns if nobody won yet
+		player *= -1 
 		isDropping = false 
 
 
@@ -147,13 +151,19 @@ func check_winner() -> Array:
 
 	# No winner yet: return 0 and an empty array
 	return [0, []]
+
 func _on_game_over_menu_restart():
-	get_tree().paused = false 
+	get_tree().paused = false
+	if TournamentState.inProgress and not TournamentState.is_tournament_complete():
+		var pair = TournamentState.get_match_players(TournamentState.currentMatchIndex)
+		GameState.player1Name = pair[0]
+		GameState.player2Name = pair[1]
 	get_tree().reload_current_scene()
 
 func _on_main_menu_pressed():
 	get_tree().paused = false 
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	TournamentState.in_progress = false
+	get_tree().change_scene_to_file("res://mode_select.tscn")
 
 func winAnimation(winCoords):
 	for coord in winCoords:
@@ -179,3 +189,17 @@ func winAnimation(winCoords):
 func update_score_number():
 	redScore.text = "Red: " + str(GameState.player1Wins)
 	yellowScore.text = "Yellow: " + str(GameState.player2Wins)
+
+
+func _on_change_name_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://oneVsOne.tscn")
+
+func handle_tournament_win(winnerName: String) -> void:
+	TournamentState.record_winner(winnerName)
+	if TournamentState.is_tournament_complete():
+		GameOver.get_node("ResultLabel").text = winnerName + " is the Tournament Champion!!"
+		GameOver.get_node("Restart").visible = false
+	else:
+		var round_name = TournamentState.get_round_name(TournamentState.currentMatchIndex)
+		GameOver.get_node("ResultLabel").text = winnerName + " wins the " + round_name + "!"
+		GameOver.get_node("Restart").text = "Next Match"

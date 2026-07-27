@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b5ixwf17x6t8h"]
+
+[ext_resource type="Script" uid="uid://d26wx5uy23ef6" path="res://mode_select.gd" id="1_m1dgs"]
+[ext_resource type="StyleBox" uid="uid://cplp7qgwid8qf" path="res://Assets/buttonNormal.tres" id="2_rvjtd"]
+[ext_resource type="StyleBox" uid="uid://bsrno57aqa1hg" path="res://Assets/buttonPressed.tres" id="3_7sl5s"]
+[ext_resource type="StyleBox" uid="uid://qweulhjk43p8" path="res://Assets/buttonHover.tres" id="4_7flls"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1dgs"]
+bg_color = Color(0, 0.239, 0.306, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.931, 0.789, 0.269, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ModeSelect" type="Control" unique_id=463659710]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m1dgs")
+
+[node name="BackgroundPanel" type="Panel" parent="." unique_id=1183902035]
+custom_minimum_size = Vector2(450, 350)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -175.0
+offset_right = 225.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m1dgs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=956222681]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -37.0
+offset_right = 46.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer" unique_id=1616517590]
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 42
+text = "Connect 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="vButton" type="Button" parent="VBoxContainer" unique_id=1619671512]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_rvjtd")
+theme_override_styles/pressed = ExtResource("3_7sl5s")
+theme_override_styles/hover = ExtResource("4_7flls")
+text = "1 vs. 1"
+
+[node name="TournamentButton" type="Button" parent="VBoxContainer" unique_id=758356505]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_rvjtd")
+theme_override_styles/pressed = ExtResource("3_7sl5s")
+theme_override_styles/hover = ExtResource("4_7flls")
+text = "Tournament
+"
